@@ -1,41 +1,23 @@
 import React, { useEffect } from 'react'
-import { Fragment, useState } from 'react'
-import { Dialog, Disclosure, Popover, Transition } from '@headlessui/react'
+import {  useState } from 'react'
+import { Dialog,  Popover } from '@headlessui/react'
 import {
-  ArrowPathIcon,
+ 
   Bars3Icon,
-  ChartPieIcon,
-  CursorArrowRaysIcon,
-  FingerPrintIcon,
-  SquaresPlusIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline'
-import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
+
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { base_url } from '../Services/base_url'
 import { getUser } from '../Services/allApi'
 
-const products = [
-  { name: 'Analytics', description: 'Get a better understanding of your traffic', href: '#', icon: ChartPieIcon },
-  { name: 'Engagement', description: 'Speak directly to your customers', href: '#', icon: CursorArrowRaysIcon },
-  { name: 'Security', description: 'Your customers’ data will be safe and secure', href: '#', icon: FingerPrintIcon },
-  { name: 'Integrations', description: 'Connect with third-party tools', href: '#', icon: SquaresPlusIcon },
-  { name: 'Automations', description: 'Build strategic funnels that will convert', href: '#', icon: ArrowPathIcon },
-]
-const callsToAction = [
-  { name: 'Watch demo', href: '#', icon: PlayCircleIcon },
-  { name: 'Contact sales', href: '#', icon: PhoneIcon },
-]
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
 
 function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [token,setToken]=useState('')
  const navigate=useNavigate()
  const [details,setDetails]=useState('')
+ const [data,setData]=useState('')
 
   const {id}=useParams()
 
@@ -43,6 +25,7 @@ function Header() {
     const {data}=await getUser(id)
     if(data){
       setDetails(data.profilePic)
+      setData(data.name)
     }else{
       navigate('*')
     }
@@ -61,10 +44,11 @@ function Header() {
   },[])
   
   return (
-    <header className="bg-bgSub  sticky top-0 z-50 shadow-md">
+    <div >
+      <header className="bg-bgSub  shadow-md">
     <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-2" aria-label="Global">
       <div className="flex lg:flex-1">
-        <a href="#" className="-m-1.5 p-1.5">
+        <a href="" className="-m-1.5 p-1.5">
          
           <img className="h-8 w-auto" src="https://www.freeiconspng.com/uploads/blogger-logo-icon-png-12.png" alt="" />
         </a>
@@ -81,67 +65,24 @@ function Header() {
       </div>
       <Popover.Group className="hidden lg:flex lg:gap-x-12">
         <Popover className="relative">
-          <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
-            Product
-            <ChevronDownIcon className="h-5 w-5 flex-none text-gray-400" aria-hidden="true" />
-          </Popover.Button>
 
-          <Transition
-            as={Fragment}
-            enter="transition ease-out duration-200"
-            enterFrom="opacity-0 translate-y-1"
-            enterTo="opacity-100 translate-y-0"
-            leave="transition ease-in duration-150"
-            leaveFrom="opacity-100 translate-y-0"
-            leaveTo="opacity-0 translate-y-1"
-          >
-            <Popover.Panel className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
-              <div className="p-4">
-                {products.map((item) => (
-                  <div
-                    key={item.name}
-                    className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"
-                  >
-                    <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                      <item.icon className="h-6 w-6 text-gray-600 group-hover:text-indigo-600" aria-hidden="true" />
-                    </div>
-                    <div className="flex-auto">
-                      <a href={item.href} className="block font-semibold text-gray-900">
-                        {item.name}
-                        <span className="absolute inset-0" />
-                      </a>
-                      <p className="mt-1 text-gray-600">{item.description}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
-                {callsToAction.map((item) => (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    className="flex items-center justify-center gap-x-2.5 p-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-100"
-                  >
-                    <item.icon className="h-5 w-5 flex-none text-gray-400" aria-hidden="true" />
-                    {item.name}
-                  </a>
-                ))}
-              </div>
-            </Popover.Panel>
-          </Transition>
+          
         </Popover>
-        <Link to={`/allblogs/${id}`} className="text-sm font-semibold leading-6 text-gray-900">
+        <Link to={`/allblogs/${id}`} className="text-sm hover:text-black  font-semibold leading-6 text-gray-900">
            Blogs
         </Link>
 
-        <Link to={`/addblogs/${id}`} className="text-sm font-semibold leading-6 text-gray-900">
+        <Link to={`/addblogs/${id}`} className="text-sm  hover:text-black  font-semibold leading-6 text-gray-900">
           Add Blogs
         </Link>
-        <Link to={`/savedblogs/${id}`} className="text-sm font-semibold leading-6 text-gray-900">
+        <Link to={`/savedblogs/${id}`} className="text-sm  hover:text-black  font-semibold leading-6 text-gray-900">
           Saved Blogs
         </Link>
-        <Link to={`/authors/${id}`}  className="text-sm font-semibold leading-6 text-gray-900">
-          Authors
+        <Link to={`/authors/${id}`}  className="text-sm  hover:text-black  font-semibold leading-6 text-gray-900">
+          Find Authors
+        </Link>
+        <Link to={`/blogsbyfollowing/${id}`}  className="text-sm  hover:text-black  font-semibold leading-6 text-gray-900">
+          By Your Authors
         </Link>
       </Popover.Group>
       <div className="hidden lg:flex lg:flex-1 lg:justify-end">
@@ -151,8 +92,17 @@ function Header() {
             <div className="h-10 w-10 rounded-full cursor-pointer bg-black">
                {
                 details?(
-                      <img className='h-10 w-10 rounded-full' src={`${base_url}/images/${details}`}/>
-                ):''
+                  <div className='grid grid-cols-[50px_auto]'>
+                  <div>
+                  <img className='h-10 w-10 rounded-full' src={`${base_url}/images/${details}`}/>
+                  </div>
+                  <div className='w-full flex items-center'>
+                      <h3 className='font-bold'>{data}</h3>
+                  </div>
+                 </div>
+                ):<div className='h-10 w-10 rounded-full'>
+                     <img src="https://th.bing.com/th/id/R.19fa7497013a87bd77f7adb96beaf768?rik=144XvMigWWj2bw&riu=http%3a%2f%2fwww.pngall.com%2fwp-content%2fuploads%2f5%2fUser-Profile-PNG-High-Quality-Image.png&ehk=%2bat%2brmqQuJrWL609bAlrUPYgzj%2b%2f7L1ErXRTN6ZyxR0%3d&risl=&pid=ImgRaw&r=0" alt="" />
+                </div>
                }
             </div>
             </Link>
@@ -166,10 +116,10 @@ function Header() {
       <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
         <div className="flex items-center justify-between">
           <a href="#" className="-m-1.5 p-1.5">
-            <span className="sr-only">Your Company</span>
+            
             <img
               className="h-8 w-auto"
-              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+              src="https://www.freeiconspng.com/uploads/blogger-logo-icon-png-12.png"
               alt=""
             />
           </a>
@@ -185,63 +135,67 @@ function Header() {
         <div className="mt-6 flow-root">
           <div className="-my-6 divide-y divide-gray-500/10">
             <div className="space-y-2 py-6">
-              <Disclosure as="div" className="-mx-3">
-                {({ open }) => (
-                  <>
-                    <Disclosure.Button className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
-                      Product
-                      <ChevronDownIcon
-                        className={classNames(open ? 'rotate-180' : '', 'h-5 w-5 flex-none')}
-                        aria-hidden="true"
-                      />
-                    </Disclosure.Button>
-                    <Disclosure.Panel className="mt-2 space-y-2">
-                      {[...products, ...callsToAction].map((item) => (
-                        <Disclosure.Button
-                          key={item.name}
-                          as="a"
-                          href={item.href}
-                          className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                        >
-                          {item.name}
-                        </Disclosure.Button>
-                      ))}
-                    </Disclosure.Panel>
-                  </>
-                )}
-              </Disclosure>
-              <a
-                href="#"
+              <Link
+                to={`/allblogs/${id}`}
                 className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
               >
-                Features
-              </a>
-              <a
-                href="#"
+                Blogs
+              </Link>
+              <Link
+                to={`/addblogs/${id}`}
                 className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
               >
-                Marketplace
-              </a>
-              <a
-                href="#"
+                Add Blogs
+              </Link>
+              <Link
+                to={`/savedblogs/${id}`}
                 className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
               >
-                Company
-              </a>
+                Saved Blogs
+              </Link>
+              <Link
+                 to={`/authors/${id}`}
+                className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+              >
+                Find Authors
+              </Link>
+              <Link
+                 to={`/blogsbyfollowing/${id}`}
+                className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+              >
+                By Your Authors
+              </Link>
             </div>
+           
             <div className="py-6">
-              <a
-                href="#"
-                className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-              >
-                Log in
-              </a>
+        {
+          token? (
+            <Link to={`/userprofile/${id}`}>
+            <div className="h-10 w-10 rounded-full cursor-pointer bg-black">
+               {
+                details?(
+                     <div className='grid grid-cols-[50px_auto]'>
+                      <div>
+                      <img className='h-10 w-10 rounded-full' src={`${base_url}/images/${details}`}/>
+                      </div>
+                      <div className='w-full flex items-center'>
+                          <h3 className='font-bold'>{data}</h3>
+                      </div>
+                     </div>
+                ):''
+               }
             </div>
+            </Link>
+          ): <button className='bg-black text-sm py-2 px-5 rounded-2xl text-white hover:text-black
+          hover:bg-white hover:outline-2 hover:outline hover:outline-black text-bold'>Sign in</button>
+        }
+      </div>
           </div>
         </div>
       </Dialog.Panel>
     </Dialog>
   </header>
+    </div>
   )
 }
 

@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { getUser, uploadBlog } from '../Services/allApi'
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Header from '../Components/Header';
 
 function AddBlogs() {
 
@@ -73,11 +74,13 @@ function AddBlogs() {
     },[])
   return (
    <div>
+    <div className='sticky top-0 w-full' >
+        <Header/>
+    </div>
     <div className='min-h-screen'>
         <div className='w-full lg:min-screen sm:min-h-screen shadow-inner  p-5'>
             <div className='grid grid-cols-2'>
                 <div className='flex items-start justify-center'>
-                <h1 className='font-bold me-auto lg:text-3xl md:text-3xl sm:text-2xl text-black text-pretty'>Write from your mind.....</h1>
 
                 </div>
                 <div >

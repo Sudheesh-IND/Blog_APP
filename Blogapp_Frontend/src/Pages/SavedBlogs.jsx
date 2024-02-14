@@ -34,7 +34,7 @@ function SavedBlogs() {
   return (
     <div>
         <div>
-            <div>
+            <div className='sticky top-0 w-full'>
                 <Header/>
             </div>
             <div className="px-44">

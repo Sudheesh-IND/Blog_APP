@@ -27,7 +27,7 @@ function AllAuthors() {
     },[])
   return (
     <div>
-        <div>
+        <div className='sticky top-0 w-full'>
         <Header/>
         </div>
         <div className=" sm:px-4 lg:px-96">

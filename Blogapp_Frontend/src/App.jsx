@@ -14,6 +14,9 @@ import SavedBlogs from './Pages/SavedBlogs'
 import PageNotFound from './Pages/PageNotFound'
 import EditBlogs from './Pages/EditBlogs'
 import AllAuthors from './Pages/AllAuthors'
+import BlogsByFollowing from './Pages/BlogsByFollowing'
+import Followers from './Pages/Followers'
+import Following from './Pages/Following'
 
 function App() {
 
@@ -36,6 +39,9 @@ function App() {
        <Route path='*' element={<PageNotFound/>}/>
        <Route path='editblogs/:id/:blogId' element={<EditBlogs/>}/>
        <Route path='authors/:id' element={<AllAuthors/>}/>
+       <Route path='blogsbyfollowing/:id' element={<BlogsByFollowing/>}/>
+       <Route path='followers/:id' element={<Followers/>}/>
+       <Route path='following/:id' element={<Following/>}/>
         
       </Routes>
     </>

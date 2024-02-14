@@ -117,3 +117,21 @@ export const editProfile=async(name,email,id)=>{
     const body={name,email,id}
     return await commonApi("post",`${base_url}/editprofile`,body)
 }
+
+//following blogs
+export const getBlogsByFollowing=async(following)=>{
+    const body={following}
+    return await commonApi("post",`${base_url}/followingblogs`,body)
+}
+
+//get followers
+export const getFollowers=async(followers)=>{
+    const body={followers}
+    return await commonApi("post",`${base_url}/getfollowers`,body)
+}
+
+//get following
+export const getFollowing=async(followings)=>{
+    const body={followings}
+    return await commonApi("post",`${base_url}/getfollowing`,body)
+}

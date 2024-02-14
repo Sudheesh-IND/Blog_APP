@@ -2,6 +2,7 @@ import React from 'react'
 import { base_url } from '../Services/base_url'
 
 function CommentCard({comment}) {
+    console.log(comment)
   return (
        <div className='shadow rounded-2xl  bg-bgSub mt-4'>
         <div className="grid grid-cols-[70px_auto]  p-4">

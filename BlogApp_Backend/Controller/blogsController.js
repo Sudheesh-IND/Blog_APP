@@ -169,3 +169,22 @@ exports.getByCategory=async(req,res)=>{
         res.status(400).json(error)
     }
 }
+
+//getting blogs by following
+exports.blogsByFollowing=async(req,res)=>{
+    try {
+        const {following}=req.body
+        const blogs=[]
+        for(var i=0;i<following.length;i++){
+            const response=await Blog.findOne({userId:following[i]})
+
+            if(response){
+                 blogs.push(response)
+            }
+        }
+
+        res.status(200).json(blogs)
+    } catch (error) {
+        res.status(400).json(error)
+    }
+}

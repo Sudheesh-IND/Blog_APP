@@ -319,3 +319,39 @@ exports.profilePic=async(req,res)=>{
          res.status(400).json(error)
     }
 }
+
+//get followers
+exports.getFollowers=async(req,res)=>{
+    try {
+
+        const {followers}=req.body
+
+        const follower=[]
+        for(var i=0;i<followers.length;i++){
+            const response=await User.findOne({_id:followers[i]})
+            follower.push(response)
+        }
+        res.status(200).json(follower)
+        
+    } catch (error) {
+        res.status(400).json(error)
+    }
+}
+
+//get following
+exports.getFollowing=async(req,res)=>{
+    try {
+
+        const {followings}=req.body
+
+        const following=[]
+        for(var i=0;i<followings.length;i++){
+            const response=await User.findOne({_id:followings[i]})
+            following.push(response)
+        }
+        res.status(200).json(following)
+        
+    } catch (error) {
+        res.status(400).json(error)
+    }
+}

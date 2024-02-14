@@ -18,6 +18,8 @@ function EachBlog() {
   const navigate=useNavigate()
   const [isSvaed,setIsSaved]=useState(Boolean)
   const [sameUser,setSameUser]=useState(false)
+  const [user,setUser]=useState({})
+  const [isCommented,setCommented]=useState(false)
 
   const handleData=async()=>{
     const {data}=await getbyid(blogId)
@@ -46,8 +48,9 @@ function EachBlog() {
   //handleusertData
   const handleUser=async()=>{
     const {data}=await getUser(id)
-
+   
     if(data){
+      setUser(data)
       if(data.saved.indexOf(blogId)!==-1){
         setIsSaved(true)
       }else{
@@ -65,15 +68,17 @@ function EachBlog() {
     if(comment==''){
         toast.warning("Please type a comment !",{autoClose:2000})
     }else{
-      const response=await uploadComment(id,comment,data.user.profilePic,blogId,name)
+      const response=await uploadComment(id,comment,user.profilePic,blogId,user.name)
 
       if(response.status==200){
+        setCommented(true)
         toast.success("Comment posted",{
           autoClose:2000,
           closeButton:false,
           closeOnClick:false,
           pauseOnHover:false})
         setComment("")
+        
       }else{
         toast.error("Something went wrong",{
           autoClose:2000,
@@ -129,11 +134,11 @@ function EachBlog() {
     handleUser()
 
    
-  },[isVoted])
+  },[isVoted,isCommented])
 
   return (
     <div>
-      <div>
+      <div className='sticky top-0 w-full'>
         <Header/>
       </div>
       <div>

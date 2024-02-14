@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { editingBlog, getbyid } from '../Services/allApi'
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Header from '../Components/Header';
 
 function EditBlogs() {
 
@@ -55,6 +56,9 @@ function EditBlogs() {
     },[])
   return (
     <div>
+        <div className='sticky top-0 w-full'>
+            <Header/>
+        </div>
         <div className='min-h-screen'>
         <div className='w-full lg:min-screen sm:min-h-screen shadow-inner  p-5'>
             <div className='grid grid-cols-2'>

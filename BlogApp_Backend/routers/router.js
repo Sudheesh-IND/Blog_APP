@@ -67,5 +67,14 @@ router.get('/getallusers',userController.verification,userController.getAllUsers
 //editing the profilwe
 router.post('/editprofile',userController.verification,userController.editProfile)
 
+//getting blogs by following
+router.post('/followingblogs',userController.verification,blogController.blogsByFollowing)
+
+//getting followers
+router.post('/getfollowing',userController.verification,userController.getFollowing)
+
+//getting followers
+router.post('/getfollowers',userController.verification,userController.getFollowers)
+
 //exporting router
 module.exports=router

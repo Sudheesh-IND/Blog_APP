@@ -58,13 +58,13 @@ function AllBlogs() {
   },[category])
   return (
     <div>
-       <div className='sticky'>
+       <div className='sticky top-0 w-full'>
        <Header/>
        </div>
        <div className="px-6">
         <div className="grid lg:grid-cols-[400px_auto]">
-          <div className='w-full h-auto p-3'>
-             <div className="w-full shadow-md p-5 mt-10 rounded-2xl bg-bgSub  relative">
+          <div className='w-full h-auto p-3 '>
+             <div className="w-full shadow-md p-5 mt-10 rounded-2xl bg-bgSub ">
               <Category category={handleCategory}/>
              </div>
           </div>

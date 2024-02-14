@@ -82,7 +82,7 @@ function OtherProfile() {
 
   return (
     <div>
-        <div>
+        <div className='sticky top-0 w-full'>
             <Header/>
         </div>
         <div className="lg:px-44 mt-8">
