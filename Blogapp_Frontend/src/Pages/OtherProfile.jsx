@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Header from '../Components/Header'
 import { followauthor, getBlogsUser, getUser, getbyid } from '../Services/allApi'
-import { useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import BlogCard from '../Components/BlogCard'
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -118,8 +118,19 @@ function OtherProfile() {
                 {
                     blogs.length>0? blogs.map((blog)=>(
                         <BlogCard blog={blog}/>
-                    )):'nothing found'
+                    )):<div className='w-full mt-16 flex items-center justify-center flex-col'>
+                    <h2 className='font-bold text-xl'>No blogs fount</h2>
+                    <span class="material-symbols-outlined mt-5">
+            sentiment_dissatisfied
+            </span>
+            <Link to={`/allblogs/${id}`}>
+                         <button className='bg-black mt-6 text-sm py-2 px-5 rounded-2xl text-white hover:text-black
+                  hover:bg-white hover:outline-2 hover:outline hover:outline-black text-bold'>Go Back</button>
+                         </Link>
+              
+              </div>
                 }
+                
 
             </div>
             

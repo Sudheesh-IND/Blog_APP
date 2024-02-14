@@ -97,7 +97,7 @@ function Header() {
                   <img className='h-10 w-10 rounded-full' src={`${base_url}/images/${details}`}/>
                   </div>
                   <div className='w-full flex items-center'>
-                      <h3 className='font-bold'>{data}</h3>
+                      <h3 className='font-bold'>{data.substring(0,6)}</h3>
                   </div>
                  </div>
                 ):<div className='h-10 w-10 rounded-full'>
@@ -179,7 +179,7 @@ function Header() {
                       <img className='h-10 w-10 rounded-full' src={`${base_url}/images/${details}`}/>
                       </div>
                       <div className='w-full flex items-center'>
-                          <h3 className='font-bold'>{data.substring(0,6)}</h3>
+                          <h3 className='font-bold'>{data}</h3>
                       </div>
                      </div>
                 ):''
