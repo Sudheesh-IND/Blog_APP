@@ -33,7 +33,7 @@ function App() {
        <Route path='otherprofile/:id/:otherId' element={<OtherProfile/>}/>
        <Route path='userprofile/:id' element={<UserProfile/>}/>
        <Route path='savedblogs/:id' element={<SavedBlogs/>}/>
-       <Route path='**' element={<PageNotFound/>}/>
+       <Route path='*' element={<PageNotFound/>}/>
        <Route path='editblogs/:id/:blogId' element={<EditBlogs/>}/>
        <Route path='authors/:id' element={<AllAuthors/>}/>
         

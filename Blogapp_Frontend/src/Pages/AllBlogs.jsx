@@ -3,17 +3,23 @@ import Header from '../Components/Header'
 import Category from '../Components/Category'
 import BlogCard from '../Components/BlogCard'
 import { allBlogs, byCategory } from '../Services/allApi'
+import { useNavigate } from 'react-router-dom'
 
 
 function AllBlogs() {
 
   const [blogs,setBlogs]=useState([])
   const [category,setCategory]=useState("All")
-  
+  const navigate=useNavigate()
 
+  //handling the blogs
   const handleBlogs=async()=>{
     const {data}=await allBlogs()
-    setBlogs(data)
+    if(data){
+      setBlogs(data)
+    }else{
+      navigate('*')
+    }
   }
 
   //getting blogs with respect to category
@@ -32,7 +38,7 @@ function AllBlogs() {
       setBlogs([])
       setBlogs(response.data)
     }else{
-      alert("error")
+      navigate('*')
     }
   }
 
@@ -46,6 +52,8 @@ function AllBlogs() {
     }else{
       getBlogsByCategory()
     }
+
+    
    
   },[category])
   return (

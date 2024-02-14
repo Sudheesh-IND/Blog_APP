@@ -23,16 +23,12 @@ function AddBlogs() {
 
     const userDetails=async()=>{
         const {data}=await getUser(id)
-        setUser({...user,name:data.name,profilePic:"drsgsdfhdx"})   
+        if(data){
+            setUser({...user,name:data.name,profilePic:data.profilePic})  
+        }else{
+            navigate('*')
+        } 
      }
-
-     //appending the file to formdata
-    // const setImage=(e)=>{
-        
-    //     setFilename(e.target.files[0].name)
-    //     const file=e.target.files[0]
-    //     formData.append("file",file)
-    // }
 
     //setting the values
     const setValues=(e)=>{
@@ -50,12 +46,12 @@ function AddBlogs() {
         const response=await uploadBlog(blogDetails.title,blogDetails.category,blogDetails.content,id,user,date)
          console.log(response)
         if(response.status==200){
-           toast.success("Successful",{autoClose:2000})
+           toast.success("Successful",{autoClose:2000,pauseOnHover:false,closeButton:false,closeOnClick:false})
            setTimeout(()=>{
             navigate(`/allblogs/${id}`)
            },2000)
         }else if(response.data=="please login"){
-            toast.error("Please login",{autoClose:2000})
+            toast.error("Please login",{autoClose:2000,pauseOnHover:false,closeButton:false,closeOnClick:false})
             setTimeout(()=>{
                 navigate('/login')
             },2000)
@@ -67,7 +63,12 @@ function AddBlogs() {
 
     useEffect(()=>{
 
-        userDetails()
+    userDetails()
+
+    const token=localStorage.getItem('blogtoken')
+    if(!token){
+      navigate('/login')
+    }
        
     },[])
   return (
@@ -111,22 +112,7 @@ function AddBlogs() {
 
                     }
                 </select>
-       {/* <label for="dropzone-file" className="flex flex-col items-center justify-center w-full h-28 rounded-2xl cursor-pointer bg-bgSub shadow-inner border-2">
-        <div className="flex flex-col items-center justify-center pt-5 pb-6">
-            <svg className="w-8 h-8 mb-4 text-black" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
-            </svg>
-            {
-                filename==""? (
-              <>
-                    <p className="mb-2 text-sm text-black"><span class="font-semibold">Click to upload</span> or drag and drop</p>
-                <p className="text-xs text-black">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
-              </>
-                ):<p  className="mb-2 text-sm text-black font-bold">{filename}</p>
-            }
-        </div>
-        <input id="dropzone-file" type="file" className="hidden" onChange={(e)=>setImage(e)} />
-        </label> */}
+      
       </div> 
                 </div>
 

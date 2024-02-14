@@ -24,6 +24,7 @@ function UserProfile() {
     const [email,setEmail]=useState('')
     const navigate=useNavigate()
     const [following,setFollowing]=useState('')
+    const [picSetted,isPicSetted]=useState(false)
 
 
     //setting the profilepic
@@ -46,10 +47,12 @@ function UserProfile() {
             const data=await imageDetails(id,response.data.filename)
 
             if(data.status==200){
-                handleDetails() 
+                isPicSetted(true)
+            }else{
+                toast.error("An error happend",{autoClose:2000,closeButton:false,pauseOnHover:false}) 
             }
         }else{
-            alert("failed")
+            toast.error("Failed",{autoClose:2000,closeButton:false,pauseOnHover:false})
         }
     }
 
@@ -65,7 +68,7 @@ function UserProfile() {
         setName(data.name)
         setEmail(data.email)
         }else{
-            navigate('**')
+            navigate('*')
         }
        
     }
@@ -76,7 +79,7 @@ function UserProfile() {
         if(response.status==200){
             setBlogs(response.data)
         }else{
-            navigate('**')
+            navigate('*')
         }
     }
 
@@ -85,16 +88,25 @@ function UserProfile() {
         const response=await editProfile(name,email,id)
 
         if(response.status==200){
-            toast.success("Edited successfully",{autoClose:2000})
+            toast.success("Edited successfully",{autoClose:2000,closeButton:false,pauseOnHover:false})
         }else{
-            toast.error("Unexpected error",{autoClose:2000}) 
+            toast.error("Unexpected error",{autoClose:2000,closeButton:false,pauseOnHover:false}) 
         }
+    }
+
+    //logging out
+    const logOut=()=>{
+        localStorage.clear()
+        toast.success("Logging you out",{autoClose:2000,closeButton:false,pauseOnHover:false})
+        setTimeout(()=>{
+            navigate('/')
+        },2000)
     }
 
     useEffect(()=>{
         handleDetails()
         handleBlogs()
-    },[deleted])
+    },[deleted,picSetted])
   return (
     <div>
         <div>
@@ -157,8 +169,8 @@ function UserProfile() {
         </Popover>
             </div>
             <div className='flex items-center justify-start'>
-            <Link to={`/addblogs/${id}`}><button className='bg-black mt-4 text-sm py-2 px-5 rounded-2xl text-white hover:text-black
-                hover:bg-white hover:outline-2 hover:outline hover:outline-black text-bold'>Write Now</button></Link>
+            <button onClick={logOut} className='bg-black mt-4 text-sm py-2 px-5 rounded-2xl text-white hover:text-black
+                hover:bg-white hover:outline-2 hover:outline hover:outline-black text-bold'>Log Out</button>
             </div>
         </div>
         <div className="lg:px-80 sm:px-3">

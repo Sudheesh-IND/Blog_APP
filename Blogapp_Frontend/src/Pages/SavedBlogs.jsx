@@ -21,7 +21,7 @@ function SavedBlogs() {
             setBlogs(result.data)
           
         }else{
-            navigate('**')
+            navigate('*')
         }
     }
 

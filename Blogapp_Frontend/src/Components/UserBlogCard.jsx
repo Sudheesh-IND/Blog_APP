@@ -1,18 +1,21 @@
 import React, { useState } from 'react'
 import { deleteBlog } from '../Services/allApi'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 
 
 
 function UserBlogCard({blog},{deleted}) {
 
     const {id}=useParams()
+    const navigate=useNavigate()
     
     const handleDelete=async(blogId)=>{
           const response=await deleteBlog(blogId)
 
           if(response.status==200){
             deleted(true)
+          }else{
+            navigate('*')
           }
     }
 

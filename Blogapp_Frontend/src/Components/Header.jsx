@@ -44,13 +44,18 @@ function Header() {
     if(data){
       setDetails(data.profilePic)
     }else{
-      navigate('')
+      navigate('*')
     }
     
   }
 
   useEffect(()=>{
      setToken(localStorage.getItem('blogtoken'))
+
+     const token=localStorage.getItem('blogtoken')
+     if(!token){
+       navigate('/login')
+     }
    
      handleUser()
   },[])

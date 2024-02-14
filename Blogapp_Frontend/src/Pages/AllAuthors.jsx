@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Header from '../Components/Header'
 import ProfileCard from '../Components/ProfileCard'
 import { getAllUsers } from '../Services/allApi'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 function AllAuthors() {
 
@@ -16,12 +16,14 @@ function AllAuthors() {
         if(response.status=200){
             setAuthor(response.data)
         }else{
-            navigate('**')
+            navigate('*')
         }
     }
 
     useEffect(()=>{
         handleAuthor()
+
+   
     },[])
   return (
     <div>

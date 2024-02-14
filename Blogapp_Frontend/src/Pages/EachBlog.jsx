@@ -38,6 +38,8 @@ function EachBlog() {
       }else{
         setSameUser(false)
       }
+    }else{
+      navigate('*')
     }
   }
 
@@ -52,6 +54,8 @@ function EachBlog() {
         setIsSaved(false)
        
       }
+    }else{
+      navigate('*')
     }
 
   }
@@ -64,10 +68,18 @@ function EachBlog() {
       const response=await uploadComment(id,comment,data.user.profilePic,blogId,name)
 
       if(response.status==200){
-        toast.success("Comment posted",{autoClose:2000})
+        toast.success("Comment posted",{
+          autoClose:2000,
+          closeButton:false,
+          closeOnClick:false,
+          pauseOnHover:false})
         setComment("")
       }else{
-        toast.error("Something went wrong",{autoClose:2000})
+        toast.error("Something went wrong",{
+          autoClose:2000,
+          closeButton:false,
+          closeOnClick:false,
+          pauseOnHover:false})
         setComment("")
       }
     }
@@ -85,7 +97,7 @@ function EachBlog() {
         setIsVoted(false)
       }
     }else{
-       navigate('**')
+       navigate('*')
     }
   }
 
@@ -100,6 +112,8 @@ function EachBlog() {
         setIsSaved(false)
       }
 
+    }else{
+       navigate('*')
     }
   }
 

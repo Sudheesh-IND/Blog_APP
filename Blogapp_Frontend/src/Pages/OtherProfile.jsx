@@ -32,7 +32,7 @@ function OtherProfile() {
         }
 
         }else{
-            navigate('**')
+            navigate('*')
         }
     }
 
@@ -42,7 +42,7 @@ function OtherProfile() {
         if(data){
             setBlogs(data)
         }else{
-            navigate('**')
+            navigate('*')
         }
     }
 
@@ -66,7 +66,7 @@ function OtherProfile() {
             }
             
         }else{
-            alert("failed")
+            navigate('*')
         }
     }
     }

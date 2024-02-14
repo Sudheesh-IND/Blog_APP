@@ -21,7 +21,7 @@ function EditBlogs() {
             setCategory(response.data.category)
             setContent(response.data.content)
         }else{
-            navigate('**')
+            navigate('*')
         }
     }
 
