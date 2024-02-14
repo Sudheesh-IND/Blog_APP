@@ -78,7 +78,7 @@ function Register() {
                   ):''
                 } 
          <label htmlFor="" className='mt-10 font-bold text-xl'>Password</label>
-         <input value={values.password} onChange={handleChange}  name='password' type="text" className={`w-full mt-3 pl-2 outline-none border-2 ${errors.password && touched.password ? 'border-red-600':'border-black '} rounded-2xl h-10`} />
+         <input value={values.password} onChange={handleChange}  name='password' type="password" className={`w-full mt-3 pl-2 outline-none border-2 ${errors.password && touched.password ? 'border-red-600':'border-black '} rounded-2xl h-10`} />
          {
                   errors.password && touched.password ?(
                    <div className='h-2'>

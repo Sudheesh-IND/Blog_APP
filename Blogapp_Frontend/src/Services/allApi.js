@@ -135,3 +135,15 @@ export const getFollowing=async(followings)=>{
     const body={followings}
     return await commonApi("post",`${base_url}/getfollowing`,body)
 }
+
+//sending email
+export const sendEmail=async(email)=>{
+    const body={email}
+    return await commonApi("post",`${base_url}/forgetpassword`,body)
+}
+
+//resetting password
+export const resetPass=async(id,password)=>{
+    const body={id,password}
+    return await commonApi("post",`${base_url}/resetpassword`,body)
+}

@@ -114,14 +114,16 @@ function UserProfile() {
         </div>
         <div className='lg:px-80 w-full sm:p-3 mt-6'>
              <div className='w-full flex items-center justify-center'>
+                
                  <div className="w-28 relative h-28 cursor-pointer rounded-full  flex text-center justify-center overflow-hidden hover:shadow-xl">
                    {
-                    pic?(
-                        <img className='w-28 h-28 rounded-full' src={`${base_url}/images/${pic}`} alt="" />
-                    ):<img className='w-28 h-28 rounded-full' src="https://th.bing.com/th/id/R.19fa7497013a87bd77f7adb96beaf768?rik=144XvMigWWj2bw&riu=http%3a%2f%2fwww.pngall.com%2fwp-content%2fuploads%2f5%2fUser-Profile-PNG-High-Quality-Image.png&ehk=%2bat%2brmqQuJrWL609bAlrUPYgzj%2b%2f7L1ErXRTN6ZyxR0%3d&risl=&pid=ImgRaw&r=0" alt="" />
+                    pic!==''?(
+                        <img className='w-28  -z-20  h-28 rounded-full' src={`${base_url}/images/${pic}`} alt="" />
+                    ):<img className='w-28 -z-20  h-28 rounded-full' src="https://th.bing.com/th/id/R.19fa7497013a87bd77f7adb96beaf768?rik=144XvMigWWj2bw&riu=http%3a%2f%2fwww.pngall.com%2fwp-content%2fuploads%2f5%2fUser-Profile-PNG-High-Quality-Image.png&ehk=%2bat%2brmqQuJrWL609bAlrUPYgzj%2b%2f7L1ErXRTN6ZyxR0%3d&risl=&pid=ImgRaw&r=0" alt="" />
                    }
                       <input onChange={(e)=>handleImage(e)} type="file" className='h-full absolute opacity-0 cursor-pointer'/>
                  </div>
+                 
              </div>
         </div>
         <div className='w-full flex items-center justify-center'>

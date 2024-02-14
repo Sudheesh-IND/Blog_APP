@@ -76,5 +76,11 @@ router.post('/getfollowing',userController.verification,userController.getFollow
 //getting followers
 router.post('/getfollowers',userController.verification,userController.getFollowers)
 
+//sending email
+router.post('/forgetpassword',userController.sendEmail)
+
+//resetting password
+router.post('/resetpassword',userController.resetPassword)
+
 //exporting router
 module.exports=router

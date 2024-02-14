@@ -27,7 +27,7 @@ function Header() {
       setDetails(data.profilePic)
       setData(data.name)
     }else{
-      navigate('*')
+      // navigate('*')
     }
     
   }
@@ -91,7 +91,7 @@ function Header() {
             <Link to={`/userprofile/${id}`}>
             <div className="h-10 w-10 rounded-full cursor-pointer bg-black">
                {
-                details?(
+                details!==''?(
                   <div className='grid grid-cols-[50px_auto]'>
                   <div>
                   <img className='h-10 w-10 rounded-full' src={`${base_url}/images/${details}`}/>
@@ -173,13 +173,13 @@ function Header() {
             <Link to={`/userprofile/${id}`}>
             <div className="h-10 w-10 rounded-full cursor-pointer bg-black">
                {
-                details?(
+                details!==''?(
                      <div className='grid grid-cols-[50px_auto]'>
                       <div>
                       <img className='h-10 w-10 rounded-full' src={`${base_url}/images/${details}`}/>
                       </div>
                       <div className='w-full flex items-center'>
-                          <h3 className='font-bold'>{data}</h3>
+                          <h3 className='font-bold'>{data.substring(0,6)}</h3>
                       </div>
                      </div>
                 ):''

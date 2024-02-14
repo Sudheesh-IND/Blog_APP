@@ -1,9 +1,9 @@
 const User = require("../Model/userModel")
 const bcrypt = require('bcrypt');
-const { response } = require("express");
 const JWT=require('jsonwebtoken')
 const multer=require('multer');
 const Blog = require("../Model/blogsModel");
+const nodemailer=require("nodemailer")
 
 exports.userRegister=async(req,res)=>{
 
@@ -350,6 +350,62 @@ exports.getFollowing=async(req,res)=>{
             following.push(response)
         }
         res.status(200).json(following)
+        
+    } catch (error) {
+        res.status(400).json(error)
+    }
+}
+
+//sending otp
+
+const transporter=nodemailer.createTransport({
+    port:465,
+    secure:true,
+    service:'gmail',
+    auth:{
+       user:process.env.EMAIL,
+       pass:process.env.PASS
+    }
+})
+
+exports.sendEmail=async(req,res)=>{
+    try {
+
+        const {email}=req.body
+        const response=await User.findOne({email:email})
+        if(response){
+            const otp=Math.floor(Math.random()*9999)
+            const info=await transporter.sendMail({
+            from:process.env.EMAIL,
+            to:email,
+            subject:'Password reset request',
+            text:'otp for the resetting of password',
+            html:`<p>otp for resetting password is ${otp}</p>`
+        })
+        
+        res.status(200).json({otp,info,response})
+        }else{
+          res.status(400).json("User not found")
+        }
+    } catch (error) {
+        res.status(400).json(error)
+    }
+}
+
+//resetpassword
+exports.resetPassword=async(req,res)=>{
+    try {
+
+        const {id,password}=req.body
+
+        const response=await User.findOne({_id:id})
+
+        if(response){
+            const hashed=await bcrypt.hash(password,10)
+            response.password=hashed
+            response.save()
+            res.status(200).json('Password resetted successfully')
+        }
         
     } catch (error) {
         res.status(400).json(error)

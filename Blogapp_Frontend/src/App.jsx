@@ -17,6 +17,8 @@ import AllAuthors from './Pages/AllAuthors'
 import BlogsByFollowing from './Pages/BlogsByFollowing'
 import Followers from './Pages/Followers'
 import Following from './Pages/Following'
+import ForgetPassword from './Pages/ForgetPassword'
+import ResetPassword from './Pages/ResetPassword'
 
 function App() {
 
@@ -42,6 +44,8 @@ function App() {
        <Route path='blogsbyfollowing/:id' element={<BlogsByFollowing/>}/>
        <Route path='followers/:id' element={<Followers/>}/>
        <Route path='following/:id' element={<Following/>}/>
+       <Route path='forgetpassword' element={<ForgetPassword/>}/>
+       <Route path='resetpassword/:id' element={<ResetPassword/>}/>
         
       </Routes>
     </>

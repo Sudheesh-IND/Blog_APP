@@ -100,7 +100,8 @@ function Auth() {
                 <button className='bg-black w-20 mt-6 text-sm py-2 px-5 rounded-2xl text-white hover:text-black
                 hover:bg-white hover:outline-2 hover:outline hover:outline-black text-bold' type='button' onClick={handleSubmit} >Login</button>
                 </div>
-                <p className='mt-8 mx-auto font-bold' >Not a member?<Link to={'/register'}> Register</Link></p>
+                <Link to={'/forgetpassword'} className='mt-3 mx-auto font-bold '>Forget password</Link>
+                <p className='mt-4 mx-auto font-bold' >Not a member?<Link to={'/register'}> Register</Link></p>
 
             </div>
             </div>

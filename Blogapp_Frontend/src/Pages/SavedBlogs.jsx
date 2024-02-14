@@ -42,9 +42,9 @@ function SavedBlogs() {
                 blogs.length>0? blogs.map((blog)=>(
                     <BlogCard blog={blog}/>
                 )):<div>
-                    <div className="px-44 flex items-center justify-center flex-col min-h-screen w-full">
+                    <div className="px-44 mt-12 flex flex-col items-center justify-center w-full">
                         <h3 className='font-bold text-2xl'>Nothing saved yet ?</h3>
-                       <Link to={`/allblogs`}>
+                       <Link to={`/allblogs/${id}`}>
                        <button className='bg-black mt-6 text-sm py-2 px-5 rounded-2xl text-white hover:text-black
                 hover:bg-white hover:outline-2 hover:outline hover:outline-black text-bold'>Read</button>
                        </Link>
