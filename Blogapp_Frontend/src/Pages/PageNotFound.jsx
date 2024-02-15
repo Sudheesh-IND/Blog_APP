@@ -15,7 +15,7 @@ function PageNotFound() {
     <div>
       <div className="w-full min-h-screen flex items-center justify-center flex-col">
          <div className='w-full  flex items-center justify-center'>
-             <img src="https://cdni.iconscout.com/illustration/premium/thumb/search-result-not-found-2130355-1800920.png" alt="" />
+             <img className='h-96' src="https://itsnuqtah.com/images/404-error.png" alt="" />
          </div>
          <div className='w-full flex items-center justify-center'>
          <button onClick={goBack} className='bg-black mt-6 text-sm py-2 px-5 rounded-2xl text-white hover:text-black

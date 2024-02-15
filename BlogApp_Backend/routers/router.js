@@ -13,8 +13,6 @@ router.post('/userregister',userController.userRegister)
 //user login
 router.post('/userlogin',userController.userLogin)
 
-//adding interested topics
-router.post('/addinterest/:id',userController.verification,userController.addInterests)
 
 //adding blogs
 router.post('/addblogs',userController.verification,blogController.addBlogs)
@@ -29,16 +27,16 @@ router.delete('/deleteblog/:blogId',userController.verification,blogController.d
 router.get('/fetch/:id', userController.verification,userController.fetchUserDetails)
 
 //get all blogs
-router.get('/getallblogs',blogController.getAllBlogs)
+router.get('/getallblogs',userController.verification,blogController.getAllBlogs)
 
 //get details with respect to user id
-router.get('/getbyid/:blogId',blogController.fetchBlogById)
+router.get('/getbyid/:blogId',userController.verification,blogController.fetchBlogById)
 
 //get blogs of a certain user
-router.get('/getmyblogs/:id',blogController.myBlogs)
+router.get('/getmyblogs/:id',userController.verification,blogController.myBlogs)
 
 //follow user
-router.get('/followauthor/:id/:followingId',userController.followAuthors)
+router.get('/followauthor/:id/:followingId',userController.verification,userController.followAuthors)
 
 //images uploading
 router.post('/uploadimages',userController.verification,userController.upload.single("file"),userController.uploadFiles)
@@ -53,7 +51,7 @@ router.post('/addcomment',userController.verification,blogController.addComment)
 router.post('/upvote',userController.verification,blogController.addVotes)
 
 //getting according to category
-router.get('/bycategory/:category',blogController.getByCategory)
+router.get('/bycategory/:category',userController.verification,blogController.getByCategory)
 
 //getting the saved blogs
 router.post('/getsaved',userController.verification,userController.verification,userController.getSaved)

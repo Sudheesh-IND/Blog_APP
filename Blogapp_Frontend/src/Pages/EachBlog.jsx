@@ -117,8 +117,6 @@ function EachBlog() {
         setIsSaved(false)
       }
 
-    }else{
-       navigate('*')
     }
   }
 
@@ -154,9 +152,9 @@ function EachBlog() {
           </div>
           <div className='ms-auto pr-12'>
           <button className={`mr-2  text-sm py-1 px-5 rounded-2xl 
-                outline-2 text-bold sm:mb-5 ${isVoted ? "text-white bg-black" :"text-black bg-white  outline outline-black"}`} onClick={handleUpvotes}><i class="fa-solid fa-angle-up mr-1"></i>{upvotes.length} Upvotes</button>
-                <a href="#comment"> <button className='  text-sm py-1 px-5 rounded-2xl text-black 
-                bg-white outline-2 outline outline-black text-bold sm:mt-2'><i class="fa-regular fa-comment mr-1"></i>{commentList.length} comments</button></a>
+                outline-2 text-bold  ${isVoted ? "text-white bg-black" :"text-black bg-white  outline outline-black"}`} onClick={handleUpvotes}><i class="fa-solid fa-angle-up mr-1"></i>{upvotes.length} Upvotes</button>
+                <a href="#comment"> <button className='sm:mt-3 text-sm py-1 px-5 rounded-2xl text-black 
+                bg-white outline-2 outline outline-black text-bold '><i class="fa-regular fa-comment mr-1"></i>{commentList.length} comments</button></a>
           </div>
         </div>
         <div>

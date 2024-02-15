@@ -18,7 +18,7 @@ function SavedBlogs() {
         if(response.status==200){
             const result=await getSaved(response.data.saved)
             
-            setBlogs(result.data)
+            setBlogs(result.data.reverse())
           
         }else{
             navigate('*')
@@ -37,12 +37,12 @@ function SavedBlogs() {
             <div className='sticky top-0 w-full'>
                 <Header/>
             </div>
-            <div className="px-44">
+            <div className=" sm:px-12 md:px-12 lg:px-44 ">
                {
                 blogs.length>0? blogs.map((blog)=>(
                     <BlogCard blog={blog}/>
                 )):<div>
-                    <div className="px-44 mt-12 flex flex-col items-center justify-center w-full">
+                    <div className="mt-24 lg:px-44  flex flex-col items-center justify-center w-full">
                         <h3 className='font-bold text-2xl'>Nothing saved yet ?</h3>
                        <Link to={`/allblogs/${id}`}>
                        <button className='bg-black mt-6 text-sm py-2 px-5 rounded-2xl text-white hover:text-black

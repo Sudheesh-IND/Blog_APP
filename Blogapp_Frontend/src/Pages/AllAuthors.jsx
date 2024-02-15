@@ -14,7 +14,7 @@ function AllAuthors() {
     const handleAuthor=async()=>{
         const response=await getAllUsers()
         if(response.status=200){
-            setAuthor(response.data)
+            setAuthor(response.data.reverse())
         }else{
             navigate('*')
         }

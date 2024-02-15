@@ -122,37 +122,7 @@ exports.getAllUsers=async(req,res)=>{
     }
 }
 
-//adding interests
-exports.addInterests=async(req,res)=>{
-    //inside try catch block
-    try {
-        const {topics}=req.body
-        const {id}=req.params
-        
-        //searching for the user
-        const response=await User.findOne({_id:id})
 
-        if(response){
-            if(topics in response.interests){
-                //removing topics if already present inside the array
-                const index=response.interests[topics]
-                response.interests.slice(index)
-                response.save()
-                res.status(200).json("Item removed")
-            }else{
-                //pushing topics into the array
-                response.interests.push(topics)
-                response.save()
-                res.status(200).json("Item added")
-            }
-        }else{
-            res.status(400).json("Not Loginned")
-        }
-        
-    } catch (error) {
-        res.status(401).json(error)
-    }
-}
 
 //following someone
 exports.followAuthors=async(req,res)=>{

@@ -21,8 +21,6 @@ function EditBlogs() {
             setTitle(response.data.title)
             setCategory(response.data.category)
             setContent(response.data.content)
-        }else{
-            navigate('*')
         }
     }
 

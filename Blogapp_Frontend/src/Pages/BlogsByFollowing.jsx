@@ -7,7 +7,7 @@ import BlogCard from '../Components/BlogCard'
 
 function BlogsByFollowing() {
 
-    const [following,setFollowing]=useState([])
+   
     const [blogs,setBlogs]=useState([])
     const {id}=useParams()
     const navigate=useNavigate()
@@ -18,27 +18,25 @@ function BlogsByFollowing() {
         const response=await getUser(id)
 
         if(response.status==200){
-            setFollowing(response.data.following)
+   
+            const response2=await getBlogsByFollowing(response.data.following)
+            console.log(response2)
+       if(response2.status==200){
+            setBlogs(response2.data.reverse())
+       }else{
+        navigate('*')
+       }
         }else{
             navigate('*')
         }
     }
 
-    //handleBlogs
-    const handleBlogs=async()=>{
-       const response=await getBlogsByFollowing(following)
-
-       if(response.status==200){
-            setBlogs(response.data)
-       }else{
-        navigate('*')
-       }
-    }
+ 
 
     useEffect(()=>{
         handleData()
-        handleBlogs()
-    })
+        
+    },[])
   return (
     <div>
         <div className='sticky top-0 w-full'>

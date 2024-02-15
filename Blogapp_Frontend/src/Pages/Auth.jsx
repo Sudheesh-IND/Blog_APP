@@ -25,15 +25,17 @@ function Auth() {
       const response=await loginUser(values.email,values.password)
             console.log(response)
             if(response.status==200){
-              localStorage.setItem("blogtoken",response.data.token)
-              localStorage.setItem("blogUser",response.data.response._id)
+              actions.resetForm()
+              
                toast.success("Login successfull",{
                 autoClose:2000,
                 closeButton:false,
                 closeOnClick:false,
                 pauseOnHover:false})
-               actions.resetForm()
+               
                setTimeout(()=>{
+                localStorage.setItem("blogtoken",response.data.token)
+                localStorage.setItem("blogUser",response.data.response._id)
                   navigate(`/allblogs/${response.data.response._id}`)
                },2000)
                
@@ -76,8 +78,8 @@ function Auth() {
        
 
            <form action="" >
-           <div className="h-screen  w-full flex items-center justify-center">
-           <div className=' h-auto lg:w-1/3 sm:2/3 bg-bgSub flex flex-col p-5 shadow rounded-3xl'>
+           <div className="h-screen w-full flex items-center justify-center">
+           <div className=' h-auto   sm:w-2/4 lg:w-1/3 bg-bgSub flex flex-col p-5 shadow rounded-3xl'>
                 <label htmlFor="" className='mt-10 font-bold text-xl'>Email</label>
                 <input value={values.email} onChange={handleChange}  name='email' type="text" className={`w-full mt-3 pl-2 outline-none border-2 ${errors.email && touched.email ? 'border-red-600':'border-black '} rounded-2xl h-10`} />
                  {

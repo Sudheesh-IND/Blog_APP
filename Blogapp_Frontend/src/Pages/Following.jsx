@@ -38,7 +38,7 @@ function Following() {
             
             <Header/>
         </div>
-        <div className='lg:px-80'>
+        <div className='sm:px-10 lg:px-80 '>
            {
             data.length>0? data.map((author)=>(
                 <ProfileCard author={author}/>

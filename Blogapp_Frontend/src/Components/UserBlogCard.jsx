@@ -4,7 +4,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 
 
 
-function UserBlogCard({blog},{deleted}) {
+function UserBlogCard({blog,deleted}) {
 
     const {id}=useParams()
     const navigate=useNavigate()

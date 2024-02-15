@@ -8,7 +8,7 @@ function BlogCard({blog}) {
     const [proPic,setPropic]=useState(blog.user.profilePic)
   return (
     
-<div class="w-full px-10 py-6 bg-bgSub  rounded-2xl shadow-md lg:mt-10 sm:mt-5">
+<div class="w-full px-10 py-6 bg-bgSub  rounded-2xl shadow-md  mt-10">
         <div class="flex justify-between items-center">
             <span class="font-light text-gray-600">{blog.date}</span>
             <h4 className='font-bold italic'>{blog.category}</h4>

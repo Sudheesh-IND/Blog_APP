@@ -16,9 +16,7 @@ const userSchema=new mongoose.Schema({
         type:String,
         required:true
     },
-    interests:{
-        type:Array
-    },
+   
     profilePic:{
         type:String,
        

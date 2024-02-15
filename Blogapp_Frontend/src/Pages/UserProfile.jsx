@@ -103,6 +103,11 @@ function UserProfile() {
         },2000)
     }
 
+    //handling delete
+    const handleDelete=(data)=>{
+        setDeleted(data)
+    }
+
     useEffect(()=>{
         handleDetails()
         handleBlogs()
@@ -121,7 +126,7 @@ function UserProfile() {
                         <img className='w-28  -z-20  h-28 rounded-full' src={`${base_url}/images/${pic}`} alt="" />
                     ):<img className='w-28 -z-20  h-28 rounded-full' src="https://th.bing.com/th/id/R.19fa7497013a87bd77f7adb96beaf768?rik=144XvMigWWj2bw&riu=http%3a%2f%2fwww.pngall.com%2fwp-content%2fuploads%2f5%2fUser-Profile-PNG-High-Quality-Image.png&ehk=%2bat%2brmqQuJrWL609bAlrUPYgzj%2b%2f7L1ErXRTN6ZyxR0%3d&risl=&pid=ImgRaw&r=0" alt="" />
                    }
-                      <input onChange={(e)=>handleImage(e)} type="file" className='h-full absolute opacity-0 cursor-pointer'/>
+                      <input onChange={(e)=>handleImage(e)} type="file" accept='image/*' className='h-full absolute opacity-0 cursor-pointer'/>
                  </div>
                  
              </div>
@@ -141,7 +146,7 @@ function UserProfile() {
         </div>
         <div className='grid grid-cols-2 gap-2 mt-3'>
             <div className='flex items-center justify-end'>
-            <Popover className="relative">
+            <Popover className="relative ">
           <Popover.Button className='bg-black mt-4 text-sm py-2 px-5 rounded-2xl text-white hover:text-black
                 hover:bg-white hover:outline-2 hover:outline hover:outline-black text-bold'>
             Edit Profile
@@ -180,7 +185,7 @@ function UserProfile() {
         <div className="lg:px-80 sm:px-3">
             {
                 blogs.length>0? blogs.map((blog)=>(
-                      <UserBlogCard blog={blog} deleted={deleted}/>
+                      <UserBlogCard blog={blog} deleted={handleDelete}/>
                 )):<div className='mt-10 w-full flex items-center justify-center flex-col'>
                     <div>
                        <h3 className='font-bold text-xl'>No blogs found!</h3>

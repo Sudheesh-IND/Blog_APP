@@ -11,12 +11,15 @@ function AllBlogs() {
   const [blogs,setBlogs]=useState([])
   const [category,setCategory]=useState("All")
   const navigate=useNavigate()
+  const [term,setTerm]=useState('')
 
   //handling the blogs
   const handleBlogs=async()=>{
     const {data}=await allBlogs()
+    
     if(data){
-      setBlogs(data)
+      setBlogs(data.reverse())
+      
     }else{
       navigate('*')
     }
@@ -37,8 +40,6 @@ function AllBlogs() {
     if(response.status==200){
       setBlogs([])
       setBlogs(response.data)
-    }else{
-      navigate('*')
     }
   }
 
@@ -61,6 +62,7 @@ function AllBlogs() {
        <div className='sticky top-0 w-full'>
        <Header/>
        </div>
+       
        <div className="px-6">
         <div className="grid lg:grid-cols-[400px_auto]">
           <div className='w-full h-auto p-3 '>
@@ -69,8 +71,20 @@ function AllBlogs() {
              </div>
           </div>
           <div className='p-3'>
+            <div>
+            <div className='mt-4'>
+       <input onChange={(e)=>setTerm(e.target.value)} placeholder='Search blogs here'  type="text" className='w-full pl-2 outline-none border-2 border-black rounded-2xl h-10'/>
+
+       </div>
+            </div>
            {
-            blogs.length>0? blogs.map((blog)=>(
+            blogs.length>0? blogs.filter(item=>{
+              if(term==''){
+                return item
+              }else if(item.title.toLowerCase().includes(term.toLowerCase())){
+                 return item
+              }
+            }).map((blog)=>(
               <BlogCard blog={blog}/>
             )):<div className='w-full mt-12 flex items-center justify-center'>
 
