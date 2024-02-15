@@ -4,6 +4,8 @@ import Category from '../Components/Category'
 import BlogCard from '../Components/BlogCard'
 import { allBlogs, byCategory } from '../Services/allApi'
 import { useNavigate } from 'react-router-dom'
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 function AllBlogs() {
@@ -15,13 +17,17 @@ function AllBlogs() {
 
   //handling the blogs
   const handleBlogs=async()=>{
-    const {data}=await allBlogs()
+    const response=await allBlogs()
     
-    if(data){
-      setBlogs(data.reverse())
+    if(response.status==200){
+      setBlogs(response.data.reverse())
       
     }else{
-      navigate('*')
+      toast.error("Unexpected error please login Again",{autoClose:2000,closeOnClick:false,closeButton:false})
+      localStorage.clear()
+      setTimeout(()=>{
+        navigate('/login')
+      },2000)
     }
   }
 
@@ -98,6 +104,7 @@ function AllBlogs() {
 
         </div>
        </div>
+       <ToastContainer position='top-center'/>
     </div>
   )
 }

@@ -27,7 +27,7 @@ router.delete('/deleteblog/:blogId',userController.verification,blogController.d
 router.get('/fetch/:id', userController.verification,userController.fetchUserDetails)
 
 //get all blogs
-router.get('/getallblogs',userController.verification,blogController.getAllBlogs)
+router.get('/getallblogs',blogController.getAllBlogs)
 
 //get details with respect to user id
 router.get('/getbyid/:blogId',userController.verification,blogController.fetchBlogById)

@@ -21,6 +21,7 @@ function ForgetPassword() {
       
           
       const response=await sendEmail(values.email)
+      console.log(values.email)
       console.log(response)
     //   console.log()
       if(response.status==200){

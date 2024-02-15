@@ -25,7 +25,7 @@ function BlogCard({blog}) {
             <div>
                 <Link class="flex items-center" to={`/otherprofile/${id}/${blog.userId}`}>
                     {
-                        proPic!==''?(
+                        proPic?(
                             <img class="mx-4 w-10 h-10 object-cover rounded-full hidden sm:block" src={`${base_url}/images/${proPic}`} alt="avatar"/>
 
                         ):

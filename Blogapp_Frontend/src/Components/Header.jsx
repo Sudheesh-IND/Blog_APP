@@ -89,9 +89,9 @@ function Header() {
         {
           token? (
             <Link to={`/userprofile/${id}`}>
-            <div className="h-10 w-10 rounded-full cursor-pointer bg-black">
+            <div className="h-10 w-10 rounded-full cursor-pointer ">
                {
-                details!==''?(
+                details?(
                   <div className='grid grid-cols-[50px_auto]'>
                   <div>
                   <img className='h-10 w-10 rounded-full' src={`${base_url}/images/${details}`}/>
@@ -100,8 +100,14 @@ function Header() {
                       <h3 className='font-bold'>{data.substring(0,6)}</h3>
                   </div>
                  </div>
-                ):<div className='h-10 w-10 rounded-full'>
-                     <img src="https://th.bing.com/th/id/R.19fa7497013a87bd77f7adb96beaf768?rik=144XvMigWWj2bw&riu=http%3a%2f%2fwww.pngall.com%2fwp-content%2fuploads%2f5%2fUser-Profile-PNG-High-Quality-Image.png&ehk=%2bat%2brmqQuJrWL609bAlrUPYgzj%2b%2f7L1ErXRTN6ZyxR0%3d&risl=&pid=ImgRaw&r=0" alt="" />
+                ):
+                 <div className='grid grid-cols-[50px_auto]'>
+                 <div>
+                 <img className='h-10 w-10 rounded-full' src={`https://th.bing.com/th/id/R.19fa7497013a87bd77f7adb96beaf768?rik=144XvMigWWj2bw&riu=http%3a%2f%2fwww.pngall.com%2fwp-content%2fuploads%2f5%2fUser-Profile-PNG-High-Quality-Image.png&ehk=%2bat%2brmqQuJrWL609bAlrUPYgzj%2b%2f7L1ErXRTN6ZyxR0%3d&risl=&pid=ImgRaw&r=0`}/>
+                 </div>
+                 <div className='w-full flex items-center'>
+                     <h3 className='font-bold'>{data.substring(0,6)}...</h3>
+                 </div>
                 </div>
                }
             </div>
@@ -171,9 +177,9 @@ function Header() {
         {
           token? (
             <Link to={`/userprofile/${id}`}>
-            <div className="h-10 w-10 rounded-full cursor-pointer bg-black">
+            <div className="h-10 w-10 rounded-full cursor-pointer">
                {
-                details!==''?(
+                details?(
                      <div className='grid grid-cols-[50px_auto]'>
                       <div>
                       <img className='h-10 w-10 rounded-full' src={`${base_url}/images/${details}`}/>
@@ -182,7 +188,14 @@ function Header() {
                           <h3 className='font-bold'>{data.substring(0,6)}</h3>
                       </div>
                      </div>
-                ):''
+                ):<div className='grid grid-cols-[50px_auto]'>
+                <div>
+                <img className='h-10 w-10 rounded-full' src={`https://th.bing.com/th/id/R.19fa7497013a87bd77f7adb96beaf768?rik=144XvMigWWj2bw&riu=http%3a%2f%2fwww.pngall.com%2fwp-content%2fuploads%2f5%2fUser-Profile-PNG-High-Quality-Image.png&ehk=%2bat%2brmqQuJrWL609bAlrUPYgzj%2b%2f7L1ErXRTN6ZyxR0%3d&risl=&pid=ImgRaw&r=0`}/>
+                </div>
+                <div className='w-full flex items-center'>
+                    <h3 className='font-bold'>{data.substring(0,6)}...</h3>
+                </div>
+               </div>
                }
             </div>
             </Link>

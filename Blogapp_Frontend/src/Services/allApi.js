@@ -39,12 +39,12 @@ export const uploadBlog=async(title,category,content,userId,user,date)=>{
 
 //get all blogs
 export const allBlogs=async()=>{
-    return await commonApi("get",`${base_url}/getallblogs`,'')
+    return await commonApi("get",`${base_url}/getallblogs`,)
 }
 
 //fetch blog by Id
 export const getbyid=async(blogId)=>{
-    return await commonApi("get",`${base_url}/getbyid/${blogId}`,'')
+    return await commonApi("get",`${base_url}/getbyid/${blogId}`,)
 }
 
 //get blogs according to id
